@@ -1,0 +1,11 @@
+node_modules/
+
+# Google API
+credentials.json
+token.json
+
+# Twitter API
+config.js
+
+# Results file
+results.txt
