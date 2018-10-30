@@ -1,7 +1,8 @@
 const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
-const getTweets = require('./app.js');
+const tweets = require('./app.js');
+const users = require("./users.js");
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
@@ -84,12 +85,13 @@ const spreadsheetId = "1728XCdgOpUHdnqwzPbOPTLvnpSGx0zFHi4nfVE4or-o";
 const params = {
     spreadsheetId: spreadsheetId
 }
+const user_ids = users.id_list;
 
 function storeResults(auth) {
     const sheets = google.sheets({version: 'v4', auth});
     sheets.spreadsheets.values.update({
       ...params,
-      range: 'Sheet1!A2:A4'
+      range: 'Sheet1!A:A'
     }, (err, res) => {
         if (err) {
             console.log(err);
@@ -97,5 +99,8 @@ function storeResults(auth) {
         else {
             console.log(res.data);
         }
+
     } 
 )};
+
+tweets.getTweets(user_ids, storeResults);
