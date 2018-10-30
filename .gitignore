@@ -9,3 +9,6 @@ config.js
 
 # Results file
 results.txt
+
+# Users file
+user_list.js
