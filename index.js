@@ -19,7 +19,7 @@ const TOKEN_PATH = 'token.json';
 fs.readFile('credentials.json', (err, content) => {
   if (err) return console.log('Error loading client secret file:', err);
   // Authorize a client with credentials, then call the Google Sheets API.
-  authorize(JSON.parse(content), getTweets);
+  authorize(JSON.parse(content), storeResults);
 });
 
 /**
@@ -75,7 +75,27 @@ function getNewToken(oAuth2Client, callback) {
 // ++++++++++++++++++++++++++
 // +                        +
 // +                        +
-// +    API INTERACTION     +
+// +    API INTEGRATION     +
 // +                        +
 // +                        +
 // ++++++++++++++++++++++++++
+
+const spreadsheetId = "1728XCdgOpUHdnqwzPbOPTLvnpSGx0zFHi4nfVE4or-o";
+const params = {
+    spreadsheetId: spreadsheetId
+}
+
+function storeResults(auth) {
+    const sheets = google.sheets({version: 'v4', auth});
+    sheets.spreadsheets.values.update({
+      ...params,
+      range: 'Sheet1!A2:A4'
+    }, (err, res) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(res.data);
+        }
+    } 
+)};

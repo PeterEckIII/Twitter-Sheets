@@ -55,4 +55,4 @@ function getTweets ( id ) {
     }
 }
 
-getTweets(id_list);
+// getTweets(id_list);
