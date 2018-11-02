@@ -1,14 +1,10 @@
 node_modules/
 
 # Google API
-credentials.json
-token.json
+client_secret.json
 
 # Twitter API
 config.js
-
-# Results file
-results.txt
 
 # Users file
 users.js
