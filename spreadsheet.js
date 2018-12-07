@@ -1,7 +1,7 @@
 const GoogleSpreadsheet = require('google-spreadsheet');
 const creds = require('./client_secret.json');
 
-const doc = new GoogleSpreadsheet('1728XCdgOpUHdnqwzPbOPTLvnpSGx0zFHi4nfVE4or-o');
+const doc = new GoogleSpreadsheet('YOUR_SPREADSHEET_ID_HERE');
 
 const writeToSheets = ( twitterObj ) => {
     doc.useServiceAccountAuth(creds, function (err) {
